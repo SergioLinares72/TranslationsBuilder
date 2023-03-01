@@ -165,10 +165,15 @@ namespace TranslationsBuilder.Services {
     public static TranslationsTable GetTranslationsTable(string targtLanguage = null) {
 
       TranslationSet translationSet = new TranslationSet {
+        DefaultLangauge = SupportedLanguages.AllLangauges[LanguageSynonymousItems.SynonymousTagLanguage(model.Culture)],
+        SecondaryLanguages = new List<Language>()
+      };
+    /*
+      TranslationSet translationSet = new TranslationSet {
         DefaultLangauge = SupportedLanguages.AllLangauges[model.Culture],
         SecondaryLanguages = new List<Language>()
       };
-
+    */
       if (targtLanguage != null) {
         // create table with a single secondary culture if targetLanguage is passed
         translationSet.SecondaryLanguages.Add(SupportedLanguages.AllLangauges[targtLanguage]);

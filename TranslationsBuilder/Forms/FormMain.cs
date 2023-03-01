@@ -14,6 +14,8 @@ using static System.Windows.Forms.DataGridView;
 using System.Configuration;
 using System.Diagnostics;
 using System.Security.Policy;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace TranslationsBuilder {
 
@@ -45,8 +47,9 @@ namespace TranslationsBuilder {
       tooltipServiceConnection.SetToolTip(txtServerConnection, connection.ConnectString);
       txtDatasetName.Text = connection.DatasetName + (connection.ConnectionType == ConnectionType.PowerBiDesktop ? ".pbix" : "");
       tooltipDatasetName.SetToolTip(txtDatasetName, connection.DatasetName);
-
-      txtDefaultCulture.Text = SupportedLanguages.AllLangauges[model.Culture].FullName;
+            
+      //txtDefaultCulture.Text = SupportedLanguages.AllLangauges[model.Culture].FullName;
+      txtDefaultCulture.Text = SupportedLanguages.AllLangauges[LanguageSynonymousItems.SynonymousTagLanguage(model.Culture)].FullName;
       txtCompatibilityLevel.Text = model.Database.CompatibilityLevel.ToString();
  
       listSecondaryCultures.Items.Clear();
